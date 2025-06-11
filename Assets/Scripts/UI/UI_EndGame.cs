@@ -14,15 +14,18 @@ public class UI_EndGame : MonoBehaviour
 
         //Time.timeScale = 0;
 
-        if (manager.distance <= 0)
-            return;
+        //if (manager.distance <= 0)
+        //    return;
 
-        if (manager.coins <= 0)
-            return;
+        //if (manager.coins <= 0)
+        //    return;
 
 
-        distance.text = "Distance: " + manager.distance.ToString("#,#") + " m";
-        coins.text = "Coins: " + manager.coins.ToString("#,#");
-        score.text = "Score: " + manager.score.ToString("#,#");
+        //distance.text = "Distance: " + manager.distance.ToString("#,#") + " m";
+        //coins.text = "Coins: " + manager.coins.ToString("#,#");
+        //score.text = "Score: " + manager.score.ToString("#,#");
+        distance.text = $"Distance: {manager.distance:#,#} m";
+        coins.text = $"Coins: {manager.coins}";
+        score.text = $"Score: {manager.score}";
     }
 }
