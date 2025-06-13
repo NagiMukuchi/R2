@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     private Animator anim;
     private SpriteRenderer sr;
 
-    private bool isDead;
+    public bool isDead;
     [HideInInspector] public bool extraLife;
     [HideInInspector] public bool playerUnlockedByGameUI = false;
 
@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float doubleJumpForce;
     private bool canDoubleJump;
-    
+
 
 
     [Header("Slide info")]
@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
     private bool canClimb;
 
 
- 
+
 
     void Start()
     {
@@ -158,10 +158,12 @@ public class Player : MonoBehaviour
 
     private IEnumerator Die()
     {
+        Debug.Log("Die is called");
         AudioManager.instance.PlaySFX(3);
         isDead = true;
         canBeKnocked = false;
-        rb.velocity = knockbackDir;
+        rb.AddForce(knockbackDir);
+        StartCoroutine(StopPlayer());
         anim.SetBool("isDead", true);
 
         Time.timeScale = .6f;
@@ -170,7 +172,7 @@ public class Player : MonoBehaviour
 
         Time.timeScale = 1f;
         rb.velocity = new Vector2(0, 0);
-        GameManager.instance.GameEnded();
+        //GameManager.instance.GameEnded();
     }
 
 
@@ -217,11 +219,20 @@ public class Player : MonoBehaviour
         if (!canBeKnocked)
             return;
 
+        Debug.Log("Knockback is called");
         SpeedReset();
         StartCoroutine(Invincibility());
         isKnocked = true;
-        rb.velocity = knockbackDir;
+        rb.AddForce(knockbackDir);
+        StartCoroutine(StopPlayer());
     }
+
+    private IEnumerator StopPlayer()
+    {
+        yield return new WaitForSeconds(2);
+        rb.velocity = Vector2.zero;
+    }
+
 
     private void CancelKnockback() => isKnocked = false;
 

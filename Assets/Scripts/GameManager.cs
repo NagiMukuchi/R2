@@ -99,5 +99,6 @@ public class GameManager : MonoBehaviour
     {
         SaveInfo();
         ui.OpenEndGameUI();
+        player.Damage();
     }
 }
