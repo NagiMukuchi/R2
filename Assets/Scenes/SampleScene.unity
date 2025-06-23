@@ -35634,11 +35634,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelPart:
   - {fileID: 322455017084665254, guid: 52a9572e306cc744bb126bde203f201f, type: 3}
-  - {fileID: 322455017084665254, guid: bd78cf2751b1a244f994fd1fe9f849c0, type: 3}
-  - {fileID: 322455017084665254, guid: 0b77435a926043b45ba4868edbb5fefc, type: 3}
   - {fileID: 322455017084665254, guid: 61b95e15bdb72754ea7366b63d991fb6, type: 3}
   - {fileID: 322455017084665254, guid: 50c5ac2604e9a8a41aeba115ca637240, type: 3}
+  - {fileID: 322455017084665254, guid: 0b77435a926043b45ba4868edbb5fefc, type: 3}
+  - {fileID: 322455017084665254, guid: bd78cf2751b1a244f994fd1fe9f849c0, type: 3}
+  - {fileID: 322455017084665254, guid: 818b2abd2d7c4f14e96701afd30eaf00, type: 3}
   - {fileID: 322455017084665254, guid: fb85378d8d791364689143e7eca31b60, type: 3}
+  - {fileID: 322455017084665254, guid: 1623861a6d2f77644b35c90cc4a6e83a, type: 3}
   nextPartPosition: {x: 0, y: 0, z: 0}
   distanceToSpawn: 50
   distanceToDelete: 200
