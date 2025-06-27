@@ -267,8 +267,16 @@ public class Player : MonoBehaviour
 
             Vector2 ledgePosition = GetComponentInChildren<LedgeDetection>().transform.position;
 
-            climbBegunPosition = ledgePosition + offset1;
-            climbOverPosition = ledgePosition + offset2;
+            if (transform.localScale.x == 1)
+            {
+                climbBegunPosition = ledgePosition + offset1;
+                climbOverPosition = ledgePosition + offset2;
+            }
+            else
+            {
+                climbBegunPosition = ledgePosition + offset1 * new Vector2(-1, 1);
+                climbOverPosition = ledgePosition + offset2 * new Vector2(-1, 1);
+            }
 
             canClimb = true;
         }
