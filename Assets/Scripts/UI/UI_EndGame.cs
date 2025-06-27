@@ -26,6 +26,6 @@ public class UI_EndGame : MonoBehaviour
         //score.text = "Score: " + manager.score.ToString("#,#");
         distance.text = $"Distance: {manager.distance:#,#} m";
         coins.text = $"Coins: {manager.coins}";
-        score.text = $"Score: {manager.score}";
+        score.text = $"Score: {(int)manager.score}";
     }
 }
