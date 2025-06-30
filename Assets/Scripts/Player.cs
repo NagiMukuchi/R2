@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
+    public Vector2 CurrentVelocity;
     private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sr;
@@ -61,8 +61,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform wallCheck;
     [SerializeField] private Vector2 wallCheckSize;
     private bool isGrounded;
-    private bool wallDetected;
-    private bool ceillingDetected;
+    [SerializeField] private bool wallDetected;
+    [SerializeField] private bool ceillingDetected;
     [HideInInspector] public bool ledgeDetected;
 
     [Header("Ledge info")]
@@ -95,6 +95,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        CurrentVelocity = rb.velocity;
         CheckCollision();
         AnimatorControllers();
 
@@ -313,18 +314,36 @@ public class Player : MonoBehaviour
         else if (horizontalInput < -0.01f)
             transform.localScale = new Vector3(-1, 1, 1);
 
-        if (wallDetected)
+        //if (wallDetected)
+        //{
+        //    SpeedReset();
+        //    return;
+        //}
+        //else
+        //{
+        //    if (isSliding)
+        //        rb.velocity = new Vector2(horizontalInput * slideSpeed, rb.velocity.y);
+        //    else
+        //        rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+        //}
+
+        if(isSliding)
         {
-            SpeedReset();
-            return;
+            rb.velocity = new Vector2(horizontalInput * slideSpeed, rb.velocity.y);
         }
         else
         {
-            if (isSliding)
-                rb.velocity = new Vector2(horizontalInput * slideSpeed, rb.velocity.y);
+            if(wallDetected)
+            {
+                SpeedReset();
+                return;
+            }
             else
+            {
                 rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+            }
         }
+
         //// Flip the sprite based on movement direction
         //if (horizontalInput != 0)
         //    sr.flipX = horizontalInput < 0;
